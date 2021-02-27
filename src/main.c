@@ -23,18 +23,16 @@ int main(void)
 
     struct t_win_s *t_win = calloc(1, sizeof(*t_win));
     init_win(t_win, 1, 1, 20, 20, main_scr);
-    add_win_to_arr(t_win);
     test_test();
     fill_win(t_win, bgw_bl);
     make_win_brdr(t_win, bdw_uf, bdw_uf);
-/*
+
     struct t_win_s *t_win1 = calloc(1, sizeof(*t_win1));
     init_win(t_win1, 30, 1, 10, 10, main_scr);
-    add_win_to_arr(t_win1);
     test_test();
-    fill_win(t_win1, bgw_bl)
+    fill_win(t_win1, bgw_bl);
     make_win_brdr(t_win1, bdw_uf, bdw_uf);
-
+/*
     struct t_win_s *t_win2 = calloc(1, sizeof(*t_win2));
     init_win(t_win2, 45, 1, 5, 10, main_scr);
     add_win_to_arr(t_win2);

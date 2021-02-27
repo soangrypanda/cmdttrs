@@ -8,15 +8,17 @@ pthread_mutex_t main_scr_mut    = PTHREAD_MUTEX_INITIALIZER;
 //struct win_s *msp;
 
 
-static int no;
 void init_win(struct t_win_s *win, int x, int y, int w, int h, struct win_s *scrn)
 {
     win->x = x;
     win->y = y;
     win->w = w;
     win->h = h;  
-    //---
-    win->no = no++;    
+
+    pthread_mutex_lock(&win_arr_mut);
+    win->no = win_arr->len;
+    pthread_mutex_unlock(&win_arr_mut);
+    add_win_to_arr(win);
 
     win->map = calloc(h, sizeof(*(win->map)));
     win->win_buf = calloc(h * w, sizeof(*win->win_buf));  
