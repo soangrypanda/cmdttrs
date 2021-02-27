@@ -4,16 +4,16 @@
 #include <elpsd_t.h>
 
 #include "tetromino.h"
-#include "test_win.h"
+//#include "test_win.h"
 
 #define MAP_N 1
 
 int main(void)
 {
     init_win_mod();
-    init_mainscreen(main_scr);
+    struct win_s *main_scr = init_mainscreen();
     //msp = main_scr;
-    fill_win_with(scrbg_bl, main_scr); 
+    fill_win(main_scr, scrbg_bl); 
 
     win_arr = calloc(1, sizeof(*win_arr));
     win_arr->max = WIN_ARR_MAX;
@@ -21,26 +21,26 @@ int main(void)
     win_arr->i   = 0;
     win_arr->arr = calloc(WIN_ARR_MAX, sizeof(*win_arr->arr));
 
-    struct t_win_s *t_win = calloc(1, sizeof(*t_win));
+    struct win_s *t_win = calloc(1, sizeof(*t_win));
     init_win(t_win, 1, 1, 20, 20, main_scr);
     test_test();
     fill_win(t_win, bgw_bl);
     make_win_brdr(t_win, bdw_uf, bdw_uf);
 
-    struct t_win_s *t_win1 = calloc(1, sizeof(*t_win1));
+    struct win_s *t_win1 = calloc(1, sizeof(*t_win1));
     init_win(t_win1, 30, 1, 10, 10, main_scr);
     test_test();
     fill_win(t_win1, bgw_bl);
     make_win_brdr(t_win1, bdw_uf, bdw_uf);
 /*
-    struct t_win_s *t_win2 = calloc(1, sizeof(*t_win2));
+    struct win_s *t_win2 = calloc(1, sizeof(*t_win2));
     init_win(t_win2, 45, 1, 5, 10, main_scr);
     add_win_to_arr(t_win2);
     test_test();
     fill_win(t_win2, bgw_bl);
     make_win_brdr(t_win2, bdw_uf, bdw_uf);
 
-    struct t_win_s *t_win3 = calloc(1, sizeof(*t_win3));
+    struct win_s *t_win3 = calloc(1, sizeof(*t_win3));
     init_win(t_win3, 52, 1, 5, 5, main_scr);
     add_win_to_arr(t_win3);
     test_test();
@@ -72,12 +72,12 @@ int main(void)
         if ( (key == 'h') || (key == 'j') || (key == 'k') || (key == 'l') || (key == 'r') )
             handle_mv_win(win_arr->arr[win_arr->i], key);
 
-        update_win(main_scr);
+        render_screen(main_scr);
         render_all_wins();
         refresh();
     }
 
     dest_tetr(tetr);
-    destroy_win(main_scr);     
+    //destroy_win(main_scr);     
     endwin();
 }

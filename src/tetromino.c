@@ -1,6 +1,6 @@
 #include "tetromino.h"
 
-int handle_mv_tetr(struct t_win_s *win, struct tetromino_s *tetr, float et, char key)
+int handle_mv_tetr(struct win_s *win, struct tetromino_s *tetr, float et, char key)
 {
     float dx = 0, dy = 0; 
     
@@ -30,7 +30,7 @@ int can_mv_tetr(struct tetromino_s *tetr, float dx, float dy)
     return (nx < w) * (nx >= 0) * (ny < h) * (ny >= 0); 
 }
 
-void mv_tetr(struct t_win_s * win, struct tetromino_s *tetr, float dx, float dy)
+void mv_tetr(struct win_s * win, struct tetromino_s *tetr, float dx, float dy)
 {   
 /*
     char * restrict w   = win->win_buf;
@@ -71,7 +71,7 @@ struct board_s * init_brd(void)
     return brd;
 }
 
-void map_brd_to_win(struct board_s *brd, struct t_win_s *win, uint32_t n)
+void map_brd_to_win(struct board_s *brd, struct win_s *win, uint32_t n)
 {
     //FILE *fd = fopen("map.txt", "w");
     char * restrict wa  = win->win_buf;

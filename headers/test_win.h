@@ -5,7 +5,7 @@
 #include <inttypes.h>
 #include <string.h>
 #include <pthread.h>
-#include <win_mod.h>
+//#include <win_mod.h>
 #include <err_mod.h>
 #include <math.h>
 
@@ -17,7 +17,7 @@ struct t_win_s {
     char            **map;
     char            *win_buf;
     struct win_s    *scr;
-    uint32_t        x, y, w, h, no;
+    int32_t        x, y, w, h, no;
 };
 
 #define WIN_ARR_MAX 20 
@@ -35,7 +35,10 @@ extern pthread_mutex_t main_scr_mut;
 //TEMP VARS!!!
 //extern struct win_s *msp;
 
-void init_win(struct t_win_s *win, int x, int y, int w, int h, struct win_s *scrn);
+void init_win_mod(void);
+
+struct t_win_s * init_mainscreen(void);
+void init_win(struct t_win_s *win, int x, int y, int w, int h, struct t_win_s *scrn);
 void map_winbuf_to_scr(struct t_win_s *win, struct win_s *scrn);
 void add_win_to_arr(struct t_win_s *win);
 void put_scr_to_winbuf(struct t_win_s *win);
@@ -51,6 +54,7 @@ void toggle_win_foc(char key);
 
 void render_all_wins(void);
 void render_win(struct t_win_s *win);
+void render_screen(struct t_win_s *win);
 
 void test_test(void);
 
