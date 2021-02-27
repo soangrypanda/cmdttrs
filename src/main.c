@@ -15,12 +15,6 @@ int main(void)
     //msp = main_scr;
     fill_win(main_scr, scrbg_bl); 
 
-    win_arr = calloc(1, sizeof(*win_arr));
-    win_arr->max = WIN_ARR_MAX;
-    win_arr->len = 0;
-    win_arr->i   = 0;
-    win_arr->arr = calloc(WIN_ARR_MAX, sizeof(*win_arr->arr));
-
     struct win_s *t_win = calloc(1, sizeof(*t_win));
     init_win(t_win, 1, 1, 20, 20, main_scr);
     test_test();
@@ -72,8 +66,8 @@ int main(void)
         if ( (key == 'h') || (key == 'j') || (key == 'k') || (key == 'l') || (key == 'r') )
             handle_mv_win(win_arr->arr[win_arr->i], key);
 
-        render_screen(main_scr);
         render_all_wins();
+        render_screen(main_scr);
         refresh();
     }
 
